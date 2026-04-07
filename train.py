@@ -143,7 +143,7 @@ for epoch in range(params['num_epochs']):
         # Updating discriminator and DHead
         optimD.zero_grad()
         # Real data
-        label = torch.full((b_size, ), real_label, device=device)
+        label = torch.full((b_size, ), real_label, device=device).to(torch.float32)
         output1 = discriminator(real_data)
         probs_real = netD(output1).view(-1)
         loss_real = criterionD(probs_real, label)
